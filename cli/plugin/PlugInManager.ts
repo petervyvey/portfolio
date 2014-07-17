@@ -43,9 +43,9 @@ export class PlugInManager {
 
     public static RegisterPlugIns(): void {
         if (PlugInManager.APPLICATION_PLUG_IN_REGISTRY.items.length == 0) {
-            var cache: Dictionary<ApplicationPlugInInfo> = new Dictionary<ApplicationPlugInInfo>()
+            var cache: Dictionary<ApplicationPlugInInfo> = new Dictionary<ApplicationPlugInInfo>();
 
-            var folderName: string = __dirname + '/../plugin';
+            var folderName: string = path.join(__dirname,'..', 'plugin');
             var files = fs.readdirSync(folderName);
 
             files.forEach((file) => {
