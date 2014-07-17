@@ -1,3 +1,3 @@
-#/usr/bin/bash
-node portfolio.js
+#!/usr/bin/env bash
+node portfolio.js "$@"
 
