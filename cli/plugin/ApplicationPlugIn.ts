@@ -10,8 +10,6 @@ export interface IApplicationPlugIn {
 
 export class ApplicationPlugIn implements IApplicationPlugIn {
 
-    public static HELP_LINE: string = new Array(41).join(' ');
-
     public name: string;
 
     public $getClassName() {

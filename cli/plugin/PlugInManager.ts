@@ -68,6 +68,8 @@ export class PlugInManager {
     }
 
     public static GetInstance(plugInName: string): ApplicationPlugInModule.ApplicationPlugIn {
+        if (!plugInName) throw new Error(ExceptionModule.Exception.MISSING_PARAMETER_PLUG_IN_NAME);
+
         var instance:any = PlugInManager.APPLICATION_PLUG_IN_REGISTRY.get(plugInName.toLowerCase());
 
         if (!instance) throw new Error(ExceptionModule.Exception.UNKNOWN_PLUG_IN);

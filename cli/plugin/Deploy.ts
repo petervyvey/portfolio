@@ -1,7 +1,10 @@
 /// <reference path='../reference.d.ts' />
 
 import stream = require('stream');
-import ReadLineSyncModule = require('../app/ReadLineSync');
+import readline = require('readline');
+import underscore = require('underscore');
+import readlineSync = require('readline-sync');
+import minimist = require('minimist');
 import PlugInModule = require('./ApplicationPlugIn');
 
 export class Deploy extends PlugInModule.ApplicationPlugIn {
@@ -12,19 +15,17 @@ export class Deploy extends PlugInModule.ApplicationPlugIn {
 
     public static PLUGIN_NAME = 'deploy';
 
-    public static HELP_TEXT = '\t' + Deploy.PLUGIN_NAME + PlugInModule.ApplicationPlugIn.HELP_LINE.slice(Deploy.PLUGIN_NAME.length) + '--user=user --password=password';
-
-    private readline: ReadLineSyncModule.ReadlineSync = new ReadLineSyncModule.ReadlineSync();
+    public static HELP_TEXT = '\t' + Deploy.PLUGIN_NAME + '\r\n\t\t' + '--user={user}' + '\r\n\t\t' + '--password={password}';
 
     public run(options: any): void {
         if (!options.user) {
-            var name: string = this.readline.question('name: ');
+            options.user = readlineSync.question('name: ');
         }
 
         if (!options.password) {
-            var password: string = this.readline.question('password: ');
+            options.password = readlineSync.question('password: ');
         }
 
-        console.log('welcome ' + options.user);
+        console.log('welcome ' + options.user + '/' + options.password);
     }
 }

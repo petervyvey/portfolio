@@ -21,12 +21,13 @@ export class Application {
             return Application.DEFAULT_EXIT_CODE;
         }
         catch (error) {
-            if (error.message == ExceptionModule.Exception.UNKNOWN_PLUG_IN) {
+            console.log('\r\n' + 'ERROR: ' + error.message + '\r\n');
+
+            if (error.message == ExceptionModule.Exception.UNKNOWN_PLUG_IN || error.message == ExceptionModule.Exception.MISSING_PARAMETER_PLUG_IN_NAME) {
+                console.log('USAGE: ' + '\r\n');
                 console.log(PlugInManagerModule.PlugInManager.GetHelpText());
             }
-            else {
-                console.log(error.message);
-            }
+
             return Application.ERROR_EXIT_CODE;
         }
     }
