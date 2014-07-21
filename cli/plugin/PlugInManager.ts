@@ -68,11 +68,11 @@ export class PlugInManager {
     }
 
     public static GetInstance(plugInName: string): ApplicationPlugInModule.ApplicationPlugIn {
-        if (!plugInName) throw new Error(ExceptionModule.Exception.MISSING_PARAMETER_PLUG_IN_NAME);
+        if (!plugInName) throw new Error(ExceptionModule.Exception.MISSING_PARAMETER_COMMAND_NAME);
 
         var instance:any = PlugInManager.APPLICATION_PLUG_IN_REGISTRY.get(plugInName.toLowerCase());
 
-        if (!instance) throw new Error(ExceptionModule.Exception.UNKNOWN_PLUG_IN);
+        if (!instance) throw new Error(ExceptionModule.Exception.UNKNOWN_COMMAND + ' \'' + plugInName + '\'');
 
         instance.constructor();
 
@@ -83,7 +83,7 @@ export class PlugInManager {
         var helpText: string = '';
 
         PlugInManager.APPLICATION_PLUG_IN_REGISTRY.items.forEach((plugIn: any) => {
-            helpText = helpText + plugIn.constructor.HELP_TEXT + '\r\n';
+            helpText = helpText + plugIn.constructor.HELP_TEXT + '\r\n\r\n';
         });
 
         return helpText;

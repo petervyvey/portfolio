@@ -15,7 +15,10 @@ export class Deploy extends PlugInModule.ApplicationPlugIn {
 
     public static PLUGIN_NAME = 'deploy';
 
-    public static HELP_TEXT = '\t' + Deploy.PLUGIN_NAME + '\r\n\t\t' + '--user={user}' + '\r\n\t\t' + '--password={password}';
+    public static HELP_TEXT =
+        '\t' + Deploy.PLUGIN_NAME + '\r\n\t\t' +
+            '--user={user}' + '\r\n\t\t' +
+            '--password={password}';
 
     public run(options: any): void {
         if (!options.user) {

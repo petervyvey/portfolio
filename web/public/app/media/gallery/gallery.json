@@ -2,11 +2,16 @@
     {
         "title": "People",
         "description": "Pictures of people",
-        "coverPicture" : "app/media/gallery/people/img.001.jpg",
+        "coverPicture" : "app/media/gallery/people/IMG_0016.JPG",
         "pictures": [
             {
-                "fileName": "app/media/gallery/people/img.001.jpg",
+                "fileName": "app/media/gallery/people/IMG_0046.JPG",
                 "title": "Man",
+                "description": "Man with cigar"
+            },
+            {
+                "fileName": "app/media/gallery/people/IMG_0016.JPG",
+                "title": "Woman",
                 "description": "Man with cigar"
             }
         ]
@@ -14,10 +19,15 @@
     {
         "title": "Nature",
         "description": "Pictures of nature",
-        "coverPicture" : "app/media/gallery/people/img.001.jpg",
+        "coverPicture" : "app/media/gallery/people/IMG_0046.JPG",
         "pictures": [
             {
-                "fileName": "app/media/gallery/people/img.001.jpg",
+                "fileName": "app/media/gallery/people/IMG_0016.JPG",
+                "title": "Man",
+                "description": "Man with cigar"
+            },
+            {
+                "fileName": "app/media/gallery/people/IMG_0046.JPG",
                 "title": "Man",
                 "description": "Man with cigar"
             }
@@ -26,10 +36,15 @@
     {
         "title": "Objects",
         "description": "Pictures of objects",
-        "coverPicture" : "app/media/gallery/people/img.001.jpg",
+        "coverPicture" : "app/media/gallery/people/IMG_0016.JPG",
         "pictures": [
             {
-                "fileName": "app/media/gallery/people/img.001.jpg",
+                "fileName": "app/media/gallery/people/IMG_0046.JPG",
+                "title": "Man",
+                "description": "Man with cigar"
+            },
+            {
+                "fileName": "app/media/gallery/people/IMG_0046.JPG",
                 "title": "Man",
                 "description": "Man with cigar"
             }

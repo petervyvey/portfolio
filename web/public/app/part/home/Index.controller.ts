@@ -35,6 +35,7 @@ module Application.Part.Home {
         public description: string = '';
         public coverPicture: string = '';
         public pictures : Array<Picture> = new Array<Picture>();
+        public interval: number = 5000;
     }
 
     export class Picture {
@@ -46,26 +47,31 @@ module Application.Part.Home {
     export interface IIndexControllerScope extends ng.IRootScopeService {
         menu: Menu;
         galleries: Array<Gallery>;
-        activateMenuItem(item: MenuItem);
+        selectedGallery: Gallery;
+
+        activateMenuItem(item: MenuItem): void;
+        selectGallery(gallery: Gallery): void;
     }
 
     export class IndexControllerScope {
-        static $inject = ['$scope', '$window', '$http'];
+        static $inject = ['$scope', '$window', '$timeout', '$http'];
 
-        constructor($scope: any, $window: ng.IWindowService, $http: ng.IHttpService) {
+        constructor($scope: any, $window: ng.IWindowService, $timeout: ng.ITimeoutService, $http: ng.IHttpService) {
             this.$scope = this.$localScope = $scope;
             this.$window = $window;
+            this.$timeout = $timeout;
             this.$http = $http;
 
             this.initializeScope();
             this.initializeData();
             this.attachEvents();
-            this.onResize();
+            this.onResize(this.$window);
         }
 
         private $scope: any;
         private $localScope: IIndexControllerScope;
         private $window: ng.IWindowService;
+        private $timeout: ng.ITimeoutService;
         private $http: ng.IHttpService;
 
         private menu: Menu;
@@ -84,6 +90,8 @@ module Application.Part.Home {
             });
 
             this.$localScope.activateMenuItem = (item: MenuItem): void => {
+                this.$localScope.selectedGallery = null;
+
                 var indexRel: number = -1;
                 for(var i: number=0; i < this.$localScope.menu.items.length; i++) {
                     if (this.$localScope.menu.items[i].isActive) {
@@ -95,13 +103,18 @@ module Application.Part.Home {
                 $.fn.fullpage.moveTo((indexNew + 1) % this.$localScope.menu.items.length, 0);
                 this.$localScope.menu.activateItem(item);
             };
+
+            this.$localScope.selectGallery = (gallery: Gallery): void => {
+                this.$localScope.selectedGallery = gallery;
+                $.fn.fullpage.moveTo(2, 1);
+                this.onResize(this.$window);
+            };
         }
 
         private initializeData(): void {
             this.$http({method: 'GET', url: '/app/media/gallery/gallery.json'}).
                 success((data, status, headers, config) => {
                     this.$localScope.galleries = data;
-                    console.log(this.$localScope.galleries);
                 }).
                 error((error, status, headers, config) => {
                     this.$localScope.galleries.splice(0, this.$localScope.galleries.length);
@@ -109,10 +122,16 @@ module Application.Part.Home {
         }
 
         private attachEvents(): void {
-            angular.element(this.$window).on('resize', this.onResize);
+            angular.element(this.$window).on('resize', (event?:JQueryEventObject)=> {
+                this.onResize(this.$window, event);
+            });
         }
 
-        private onResize(event?: JQueryEventObject):void {
+        private onResize($window: ng.IWindowService, event?: JQueryEventObject) {
+            this.$timeout(() => {
+                var height:number = $window.innerHeight;
+                angular.element('.carousel img').height(height);
+            }, 200);
         }
     }
 }

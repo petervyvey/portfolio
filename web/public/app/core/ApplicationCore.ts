@@ -1,6 +1,6 @@
 ﻿/// <reference path="_reference.d.ts" />
 
-angular.module('application', ['application.component', 'ngRoute' , 'ngLocale']);
+angular.module('application', ['application.component', 'ngRoute' , 'ngLocale', 'ui.bootstrap']);
 angular.module('application.component', []);
 
 angular.module('application')
