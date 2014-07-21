@@ -1,0 +1,65 @@
+﻿/* Custom CSS
+ * --------------------------------------- */
+.wrap{
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  position: relative;
+}
+
+.section{
+
+  &.home {
+    text-align:center;
+
+    color: #ffffff;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+    background: -webkit-gradient(linear, top left, bottom left, from(#222222), to(#000000));
+    background: -webkit-linear-gradient(#222222, #000000);
+    background: linear-gradient(#222222, #000000);
+    background-image: url(../../../../media/image/emmavyvey.home.jpg);
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    > .fp-tableCell {
+      vertical-align: middle;
+    }
+
+    h1 {
+      font-size: 4em;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      span {
+        border-bottom: 1px solid #ffffff;
+        padding-bottom: 20px;
+      }
+    }
+
+    h3 {
+      padding-top: 20px;
+      text-transform: lowercase;
+    }
+  }
+}
+
+.app-footer {
+  ul {
+    li {
+      color: @gray-lighter;
+
+      a {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+
+
+
+
