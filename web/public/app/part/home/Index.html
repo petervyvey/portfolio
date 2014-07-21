@@ -36,13 +36,20 @@
                         <h1>Portfolio</h1>
                         <h2>The work of Emma Vyvey</h2>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Portfolio</h1>
-                        <h2>The work of Emma Vyvey</h2>
+                    <div class="col-lg-4" data-ng-repeat="gallery in galleries">
+                        <div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <img data-ng-src="{{ gallery.coverPicture }}" />
+                                </div>
+                                <div class="panel-footer">
+                                    <span data-ng-bind="gallery.title"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
 
             </div>

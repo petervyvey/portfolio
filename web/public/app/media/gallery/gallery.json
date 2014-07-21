@@ -1,0 +1,38 @@
+[
+    {
+        "title": "People",
+        "description": "Pictures of people",
+        "coverPicture" : "app/media/gallery/people/img.001.jpg",
+        "pictures": [
+            {
+                "fileName": "app/media/gallery/people/img.001.jpg",
+                "title": "Man",
+                "description": "Man with cigar"
+            }
+        ]
+    },
+    {
+        "title": "Nature",
+        "description": "Pictures of nature",
+        "coverPicture" : "app/media/gallery/people/img.001.jpg",
+        "pictures": [
+            {
+                "fileName": "app/media/gallery/people/img.001.jpg",
+                "title": "Man",
+                "description": "Man with cigar"
+            }
+        ]
+    },
+    {
+        "title": "Objects",
+        "description": "Pictures of objects",
+        "coverPicture" : "app/media/gallery/people/img.001.jpg",
+        "pictures": [
+            {
+                "fileName": "app/media/gallery/people/img.001.jpg",
+                "title": "Man",
+                "description": "Man with cigar"
+            }
+        ]
+    }
+]
