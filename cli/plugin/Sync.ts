@@ -6,6 +6,10 @@ import underscore = require('underscore');
 import readlineSync = require('readline-sync');
 import minimist = require('minimist');
 import PlugInModule = require('./ApplicationPlugIn');
+import PlugInManagerModule = require('../plugin/PlugInManager');
+import CliModule = require('../app/Cli');
+import execSync = require("exec-sync");
+
 
 export class Sync extends PlugInModule.ApplicationPlugIn {
 
@@ -23,22 +27,39 @@ export class Sync extends PlugInModule.ApplicationPlugIn {
             + '--destination={destination folder}';
 
     public run(options: any): void {
+//        CliModule.Cli.execute('rm test.txt', [], function (command, args, env) {
+//            console.log(command + ' has been executed. (' + env + ')');
+//        }, function (command, args, env) {
+//            console.error('------------- Windows "' + command + '" command failed, trying Unix... ---------------');
+//
+//        }, function (command, args, env) {
+//            console.error('------------- Unix "' + command + '" command failed too. ---------------');
+//        });
+
+        var configuration:any = PlugInManagerModule.PlugInManager.RetrieveConfiguration(Sync.PLUGIN_NAME);
+
         if (!options.user) {
-            options.user = readlineSync.question('name: ');
+            options.user = readlineSync.question(PlugInManagerModule.PlugInManager.BuildPrompt('name', configuration.user));
         }
+        options.user = options.user ? options.user : configuration.user;
 
         if (!options.password) {
-            options.password = readlineSync.question('password: ');
+            options.password = readlineSync.question(PlugInManagerModule.PlugInManager.BuildPrompt('password', configuration.password));
         }
+        options.password = options.password ? options.password : configuration.password;
 
         if (!options.source) {
-            options.source = readlineSync.question('source: ');
+            options.source = readlineSync.question(PlugInManagerModule.PlugInManager.BuildPrompt('source', configuration.source));
         }
+        options.source = options.source ? options.source : configuration.source;
 
         if (!options.destination) {
-            options.destination = readlineSync.question('destination: ');
+            options.destination = readlineSync.question(PlugInManagerModule.PlugInManager.BuildPrompt('destination', configuration.destination));
         }
+        options.destination = options.destination ? options.destination : configuration.destination;
 
-        console.log('welcome ' + options.user + '/' + options.password);
+        PlugInManagerModule.PlugInManager.StoreConfiguration(Sync.PLUGIN_NAME, options);
+
+        execSync('rm test.out?');
     }
 }

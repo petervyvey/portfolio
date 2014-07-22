@@ -1,4 +1,5 @@
 /// <reference path='vendor/Application/typescript/readline-sync.ts' />
+/// <reference path='vendor/Application/typescript/exec-sync.ts' />
 
 /// <reference path='vendor/DefinitelyTyped/node/node.d.ts' />
 /// <reference path='vendor/DefinitelyTyped/underscore/underscore.d.ts' />

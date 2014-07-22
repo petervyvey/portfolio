@@ -79,6 +79,30 @@ export class PlugInManager {
         return instance;
     }
 
+    public static RetrieveConfiguration(plugInName: string): any {
+        var configurationValue: string = (fs.readFileSync('portfolio.config.json', { encoding: 'utf-8' })).toString();
+        var _configuration = JSON.parse(configurationValue);
+
+        return _configuration[plugInName];
+    }
+
+    public static StoreConfiguration(plugInName: string, configuration: any): any {
+        var configurationValue:string = (fs.readFileSync('portfolio.config.json', { encoding: 'utf-8' })).toString();
+        var _configuration = JSON.parse(configurationValue);
+        _configuration[plugInName] = configuration;
+
+        fs.writeFileSync('portfolio.config.json', JSON.stringify(_configuration), { encoding: 'utf-8' })
+
+        return _configuration[plugInName];
+    }
+
+    public static BuildPrompt(prompt: string, defaultAnswer?: string): string {
+        var defaultAnswer: string = defaultAnswer ? ' [' + defaultAnswer + ']' : '';
+        prompt = prompt + defaultAnswer + ': ';
+
+        return prompt;
+    }
+
     public static GetHelpText(): string {
         var helpText: string = '';
 
@@ -88,5 +112,4 @@ export class PlugInManager {
 
         return helpText;
     }
-
 }
