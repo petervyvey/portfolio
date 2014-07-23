@@ -7,7 +7,6 @@ import readlineSync = require('readline-sync');
 import minimist = require('minimist');
 import PlugInModule = require('./ApplicationPlugIn');
 import PlugInManagerModule = require('../plugin/PlugInManager');
-import CliModule = require('../app/Cli');
 import execSync = require("exec-sync");
 
 
@@ -27,15 +26,6 @@ export class Sync extends PlugInModule.ApplicationPlugIn {
             + '--destination={destination folder}';
 
     public run(options: any): void {
-//        CliModule.Cli.execute('rm test.txt', [], function (command, args, env) {
-//            console.log(command + ' has been executed. (' + env + ')');
-//        }, function (command, args, env) {
-//            console.error('------------- Windows "' + command + '" command failed, trying Unix... ---------------');
-//
-//        }, function (command, args, env) {
-//            console.error('------------- Unix "' + command + '" command failed too. ---------------');
-//        });
-
         var configuration:any = PlugInManagerModule.PlugInManager.RetrieveConfiguration(Sync.PLUGIN_NAME);
 
         if (!options.user) {
@@ -59,7 +49,5 @@ export class Sync extends PlugInModule.ApplicationPlugIn {
         options.destination = options.destination ? options.destination : configuration.destination;
 
         PlugInManagerModule.PlugInManager.StoreConfiguration(Sync.PLUGIN_NAME, options);
-
-        execSync('rm test.out?');
     }
 }
