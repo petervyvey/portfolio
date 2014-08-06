@@ -11,5 +11,13 @@ var options = minimist(process.argv.slice(2), opts={});
 // Run the application.
 var exitCode = ApplicationModule.Application.Run(options);
 
-// Use run return value as exit code.
-process.exit(exitCode);
+
+var i = 0;
+var interval = setInterval(function () {
+    i++;
+    if (i === 100) {
+        clearInterval(interval);
+        // Use run return value as exit code.
+        process.exit(exitCode);
+    }
+}, 50);

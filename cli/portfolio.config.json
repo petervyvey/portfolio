@@ -1,1 +1,1 @@
-{"sync":{"_":["sync"],"user":"emma","password":"secret","source":"/home/emma/media/pictures","destination":"/mnt/shares/storage/emma/media/pictures"}}
+{"sync":{"_":["sync"],"user":"peter","password":"secret","source":"test","destination":"folder"}}

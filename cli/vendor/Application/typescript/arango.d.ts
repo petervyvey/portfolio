@@ -4,6 +4,6 @@ interface IArangoStatic {
 
 declare var arango: IArangoStatic;
 
-declare module 'arango' {
+declare module 'arangojs' {
     export = arango;
 }
