@@ -1,6 +1,6 @@
 /// <reference path="../../../../reference.d.ts" />
 
-import needle = require('restler');
+import restler = require('restler');
 
 export class ArangoDB {
 
@@ -78,17 +78,14 @@ export class Connection {
         var url:string = this.serverUrl + path;
         console.log(url);
 
-        restler(url,
-            {
-                uri: url,
-                json: true,
-                body: data
-            },
-            (e, r, body) => {
-                console.log(e);
-                console.log(r);
-                console.log(body);
-            });
+        restler.postJson(url, data)
+            .on('complete', (result: any) => {
+            if (result instanceof Error) {
+                callback(result);
+            } else {
+                callback(result);
+            }
+        });
     }
 }
 

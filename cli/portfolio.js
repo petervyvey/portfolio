@@ -15,7 +15,7 @@ var exitCode = ApplicationModule.Application.Run(options);
 var i = 0;
 var interval = setInterval(function () {
     i++;
-    if (i === 100) {
+    if (i === 1000) {
         clearInterval(interval);
         // Use run return value as exit code.
         process.exit(exitCode);
