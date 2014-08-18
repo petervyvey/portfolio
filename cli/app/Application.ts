@@ -22,16 +22,19 @@ export class Application {
             return promise;
         }
         catch (error) {
-            throw error;
+            console.log('\r\n' + 'ERROR: ' + error.message + '\r\n');
 
-//            console.log('\r\n' + 'ERROR: ' + error.message + '\r\n');
-//
-//            if (error.message == ExceptionModule.Exception.UNKNOWN_COMMAND || error.message == ExceptionModule.Exception.MISSING_PARAMETER_COMMAND_NAME) {
-//                console.log('USAGE: ' + '\r\n');
-//                console.log(PlugInManagerModule.PlugInManager.GetHelpText());
-//            }
-//
-//            return Application.ERROR_EXIT_CODE;
+            if (error.message == ExceptionModule.Exception.UNKNOWN_COMMAND || error.message == ExceptionModule.Exception.MISSING_PARAMETER_COMMAND_NAME) {
+                console.log('USAGE: ' + '\r\n');
+                console.log(PlugInManagerModule.PlugInManager.GetHelpText());
+            }
+
+            var deferred:Q.Deferred<any> = Q.defer();
+            setInterval(() => {
+                deferred.reject(null);
+            }, 500);
+
+            return deferred.promise;
         }
     }
 }

@@ -15,6 +15,6 @@ promise
         process.exit(ApplicationModule.Application.DEFAULT_EXIT_CODE);
     })
     .catch(function(error){
-        console.log(error);
+        if (error) console.log(error);
         process.exit(ApplicationModule.Application.ERROR_EXIT_CODE);
     });

@@ -72,7 +72,8 @@ export class PlugInManager {
 
         var instance:any = PlugInManager.APPLICATION_PLUG_IN_REGISTRY.get(plugInName.toLowerCase());
 
-        if (!instance) throw new Error(ExceptionModule.Exception.UNKNOWN_COMMAND + ' \'' + plugInName + '\'');
+        //if (!instance) throw new Error(ExceptionModule.Exception.UNKNOWN_COMMAND + ' \'' + plugInName + '\'');
+        if (!instance) throw new Error(ExceptionModule.Exception.UNKNOWN_COMMAND);
 
         instance.constructor();
 
