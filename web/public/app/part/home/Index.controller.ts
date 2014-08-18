@@ -83,6 +83,8 @@ module Application.Part.Home {
             this.$localScope.menu.addItem(new MenuItem('Services'));
             this.$localScope.menu.addItem(new MenuItem('Contact'));
 
+            this.$localScope.menu.addItem(new MenuItem('Test'))
+
             this.$localScope.galleries = new Array<Gallery>();
 
             this.$localScope.$on('$routeChangeSuccess', function(event, current) {

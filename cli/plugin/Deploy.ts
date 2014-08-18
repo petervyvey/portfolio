@@ -1,5 +1,6 @@
 /// <reference path='../reference.d.ts' />
 
+import Q = require('q');
 import stream = require('stream');
 import readline = require('readline');
 import underscore = require('underscore');
@@ -20,7 +21,8 @@ export class Deploy extends PlugInModule.ApplicationPlugIn {
             '--user={user}' + '\r\n\t\t' +
             '--password={password}';
 
-    public run(options: any): void {
+    public run(options: any): Q.Promise<any> {
+
         if (!options.user) {
             options.user = readlineSync.question('name: ');
         }
@@ -30,5 +32,8 @@ export class Deploy extends PlugInModule.ApplicationPlugIn {
         }
 
         console.log('welcome ' + options.user + '/' + options.password);
+
+        var deferred: Q.Deferred<any> = Q.defer();
+        return deferred.promise;
     }
 }

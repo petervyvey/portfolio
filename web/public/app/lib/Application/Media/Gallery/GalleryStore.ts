@@ -14,7 +14,7 @@ module Application.Media.Gallery {
 
     export class GalleryStore {
 
-        var database: arango;
+        private database: any;
 
         initialize(): void {
             arango.Connection('');

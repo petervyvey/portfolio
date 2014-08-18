@@ -1,6 +1,7 @@
 /// <reference path="../../../../reference.d.ts" />
 
 import restler = require('restler');
+import Q = require('q');
 
 export class ArangoDB {
 
@@ -74,18 +75,20 @@ export class Connection {
 
     public serverUrl: string;
 
-    public post(path: string, data: any, callback?: (response: any) => void) {
+    public post(path: string, data: any): Q.Promise<any> {
         var url:string = this.serverUrl + path;
-        console.log(url);
 
+        var deferred: Q.Deferred<any> = Q.defer();
         restler.postJson(url, data)
             .on('complete', (result: any) => {
-            if (result instanceof Error) {
-                callback(result);
-            } else {
-                callback(result);
-            }
-        });
+                if (!(result instanceof Error || result === '' || (result && result.error))) {
+                    deferred.resolve(result);
+                } else {
+                    deferred.reject(result);
+                }
+            });
+
+        return deferred.promise;
     }
 }
 
@@ -115,7 +118,9 @@ export class Document {
 
     public connection: Connection;
 
-    public create(collection: string, data: any, options?: DocumentOptions, callback?: (response: any)=> void ): any {
+    public create(collection: string, data: any, options?: DocumentOptions): Q.Promise<any> {
+        var deferred: Q.Deferred<any> = Q.defer();
+
         var parameters: string = '';
         if (!options){
             options = new DocumentOptions();
@@ -124,7 +129,15 @@ export class Document {
         options.collection = collection;
         parameters = options.toParameters();
 
-        this.connection.post(Document.PATH + parameters, data, callback);
+        this.connection.post(Document.PATH + parameters, data)
+            .then((response: any) => {
+                deferred.resolve(response);
+            })
+            .catch((error: any) => {
+                deferred.reject(error ? error : { error: true });
+            });
+
+        return deferred.promise;
     }
 }
 

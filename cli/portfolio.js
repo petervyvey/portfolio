@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-console.log('portfolio');
-
+var Q = require('q');
 var minimist = require('minimist')
 var ApplicationModule = require('./app/Application');
 
@@ -9,15 +8,13 @@ var ApplicationModule = require('./app/Application');
 var options = minimist(process.argv.slice(2), opts={});
 
 // Run the application.
-var exitCode = ApplicationModule.Application.Run(options);
-
-
-var i = 0;
-var interval = setInterval(function () {
-    i++;
-    if (i === 1000) {
-        clearInterval(interval);
-        // Use run return value as exit code.
-        process.exit(exitCode);
-    }
-}, 50);
+var promise = ApplicationModule.Application.Run(options);
+promise
+    .then(function(message) {
+        console.log(message);
+        process.exit(ApplicationModule.Application.DEFAULT_EXIT_CODE);
+    })
+    .catch(function(error){
+        console.log(error);
+        process.exit(ApplicationModule.Application.ERROR_EXIT_CODE);
+    });

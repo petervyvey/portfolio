@@ -1,16 +1,24 @@
 /// <reference path='../reference.d.ts' />
 
+import Q = require('q');
 import ExceptionModule = require('../app/Exception');
 
-export interface IApplicationPlugIn {
+export enum ApplicationPlugInState {
+    CREATED = <any>'CREATED',
+    STARTING = <any>'STARTING',
+    RUNNING = <any>'RUNNING',
+    FINISHED = <any>'FINISHED'
+}
 
+export interface IApplicationPlugIn {
     name: string;
-    run(options: any);
+    run(options: any): Q.Promise<any>;
 }
 
 export class ApplicationPlugIn implements IApplicationPlugIn {
 
     public name: string;
+    public state: ApplicationPlugInState = ApplicationPlugInState.CREATED;
 
     public $getClassName() {
         var funcNameRegex = /function (.{1,})\(/;
@@ -18,7 +26,7 @@ export class ApplicationPlugIn implements IApplicationPlugIn {
         return (results && results.length > 1) ? results[1] : '';
     }
 
-    public run(options: any): void {
+    public run(options: any): Q.Promise<any> {
         throw new Error(ExceptionModule.Exception.ABSTRACT_METHOD);
     }
 }
