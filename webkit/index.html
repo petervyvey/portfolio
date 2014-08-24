@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+
+        <link href="app/branding/application/style/theme.less" rel="stylesheet/less" type="text/less" />
+        <link rel="stylesheet" type="text/css" href="app/vendor/fontawesome/style/font-awesome.min.css" />
+
+        <title>Portfolio Manager</title>
+    </head>
+
+    <body data-ng-app="application" data-ng-controller="Application.ApplicationController">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-cloak>
+            <div class="container-fluid">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#" data-ng-click="applicationExit()" onclick="return false;">Exit</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="app-content" data-ui-view></div>
+
+        <nav class="navbar navbar-inverse navbar-fixed-bottom app-footer" role="navigation" data-ng-cloak>
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                </ul>
+            </div>
+        </nav>
+
+    </body>
+
+    <script type="text/javascript" src="app/vendor/less/lib/less-1.7.0.min.js"></script>
+
+    <script type="text/javascript" src="app/vendor/jquery/lib/jquery-2.1.1.min.js"></script>
+
+    <script type="text/javascript" src="app/vendor/bootstrap/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="app/lib/Application/Utils/Guid.js"></script>
+
+    <script type="text/javascript" src="app/vendor/angular/lib/angular.js"></script>
+    <script type="text/javascript" src="app/vendor/angular/lib/i18n/angular-locale_nl-be.js"></script>
+    <script type="text/javascript" src="app/vendor/angular/lib/angular-route.js"></script>
+
+    <script type="text/javascript" src="app/vendor/angular-ui/lib/angular-ui.min.js"></script>
+    <script type="text/javascript" src="app/vendor/angular-ui/lib/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="app/vendor/angular-ui/lib/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="app/vendor/angular-ui/lib/ui-bootstrap-tpls.min.js"></script>
+
+    <script type="text/javascript" src="app/core/ApplicationCore.js"></script>
+    <script type="text/javascript" src="app/core/Application.controller.js"></script>
+
+    <script type="text/javascript" src="app/vendor/application/lib/Arango.js"></script>
+
+    <script type="text/javascript" src="app/view/Manager.controller.js"></script>
+
+    <script type="text/javascript" src="app/part/manager/Index.controller.js"></script>
+
+</html>

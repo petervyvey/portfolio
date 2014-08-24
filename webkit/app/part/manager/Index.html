@@ -1,0 +1,45 @@
+﻿<div data-ng-controller="Application.Part.Home.IndexController">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Message</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Handle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="gallery in galleryCursor.result">
+                                            <td data-ng-bind="gallery.id"></td>
+                                            <td data-ng-bind="gallery.name"></td>
+                                            <td data-ng-bind="gallery._id"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <span data-ng-bind="galleryCursor.hasMore"></span>
+                        <button class="btn btn-default">Add</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

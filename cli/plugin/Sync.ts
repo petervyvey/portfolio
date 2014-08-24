@@ -4,6 +4,7 @@ import Q = require('q');
 import readlineSync = require('readline-sync');
 import PlugInModule = require('./ApplicationPlugIn');
 import PlugInManagerModule = require('../plugin/PlugInManager');
+import UtilsModule = require('../app/Utils');
 import ArangoModule = require('../vendor/Application/arangodb/lib/arangodb');
 
 export class Sync extends PlugInModule.ApplicationPlugIn {
@@ -55,9 +56,9 @@ export class Sync extends PlugInModule.ApplicationPlugIn {
         documentOptions.waitForSync = true;
 
         Q.all([
-            database.document.create('Gallery', { id: 1, name: 'People'}, documentOptions),
-            database.document.create('Gallery', { id: 2, name: 'Nature'}, documentOptions),
-            database.document.create('Gallery', { id: 3, name: 'Objects'}, documentOptions)
+            database.document.create('Gallery', { id: UtilsModule.Guid.NewGuid(), name: 'People'}, documentOptions),
+            database.document.create('Gallery', { id: UtilsModule.Guid.NewGuid(), name: 'Nature'}, documentOptions),
+            database.document.create('Gallery', { id: UtilsModule.Guid.NewGuid(), name: 'Buildings'}, documentOptions)
         ])
             .then((response: Array<any>) => {
                 deferred.resolve('galleries created');
